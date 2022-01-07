@@ -3,7 +3,7 @@ import sys
 
 import pytube
 
-def download_vid(url, folder):
+def download_vid(n, url, folder):
     you = pytube.YouTube(url)
 
     try:
@@ -14,7 +14,7 @@ def download_vid(url, folder):
 
     print(f'Downloading: {you.title}')
 
-    vid.download(folder)
+    vid.download(folder, filename=f'{n}.{you.title}')
 
 if __name__ == '__main__':
     playlist_url = 'https://youtube.com/playlist?list=PLMj2crhs4VJS5lmbg0BIfHoljLSDZKfrW'
@@ -29,5 +29,5 @@ if __name__ == '__main__':
     if not os.path.exists(folder):
         os.mkdir(folder)
 
-    for url in p.video_urls:
-        download_vid(url, folder)
+    for i, url in enumerate(p.video_urls):
+        download_vid(i + 1, url, folder)
