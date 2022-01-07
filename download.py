@@ -6,9 +6,13 @@ import pytube
 def download_vid(url, folder):
     you = pytube.YouTube(url)
 
-    print(f'Downloading: {you.title}')
+    try:
+        vid = you.streams.get_highest_resolution()
+    except:
+        print(f'Failed: {you.title}')
+        return
 
-    vid = you.streams.get_highest_resolution()
+    print(f'Downloading: {you.title}')
 
     vid.download(folder)
 
