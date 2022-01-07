@@ -24,7 +24,7 @@ if __name__ == '__main__':
     try:
         folder = sys.argv[1]
     except:
-        folder = './'
+        folder = './downloaded/'
 
     if not os.path.exists(folder):
         os.mkdir(folder)
