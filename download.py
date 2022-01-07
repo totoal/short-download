@@ -6,15 +6,18 @@ import pytube
 def download_vid(n, url, folder):
     you = pytube.YouTube(url)
 
+    # Replace '/' characters with '-'
+    title = you.title.replace('/', '-')
+
     try:
         vid = you.streams.get_highest_resolution()
     except:
-        print(f'Failed: {you.title}')
+        print(f'Failed: {title}')
         return
 
-    print(f'Downloading: {you.title}')
+    print(f'Downloading: {title}')
 
-    vid.download(folder, filename=f'{n}.{you.title}')
+    vid.download(folder, filename=f'{n}.{title}')
 
 if __name__ == '__main__':
     playlist_url = 'https://youtube.com/playlist?list=PLMj2crhs4VJS5lmbg0BIfHoljLSDZKfrW'
